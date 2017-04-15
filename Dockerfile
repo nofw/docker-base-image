@@ -11,12 +11,13 @@ RUN set -xe \
         zlib1g-dev \
         libicu-dev \
         locales \
+        libmemcached-dev \
     --no-install-recommends && rm -r /var/lib/apt/lists/* \
     && echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
     && locale-gen \
     && docker-php-ext-install -j$(nproc) intl gettext zip \
-    && pecl install apcu \
-    && docker-php-ext-enable apcu \
+    && pecl install apcu memcached \
+    && docker-php-ext-enable apcu memcached \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=${COMPOSER_PATH} --filename=composer --version=${COMPOSER_VERSION} \
     && mkdir -p $COMPOSER_HOME \
     && composer global require --quiet "hirak/prestissimo:^0.3"
