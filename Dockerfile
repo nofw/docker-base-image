@@ -9,8 +9,9 @@ RUN set -xe \
     && apt-get update && apt-get install -y \
         git \
         zlib1g-dev \
+        libicu-dev \
     --no-install-recommends && rm -r /var/lib/apt/lists/* \
-    && docker-php-ext-install -j$(nproc) zip \
+    && docker-php-ext-install -j$(nproc) intl gettext zip \
     && pecl install apcu \
     && docker-php-ext-enable apcu \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=${COMPOSER_PATH} --filename=composer --version=${COMPOSER_VERSION} \
