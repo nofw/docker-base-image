@@ -12,6 +12,7 @@ RUN set -xe \
         libicu-dev \
         locales \
         libmemcached-dev \
+        gettext \
     --no-install-recommends && rm -r /var/lib/apt/lists/* \
     && echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
     && locale-gen \
