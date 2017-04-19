@@ -16,7 +16,7 @@ RUN set -xe \
     --no-install-recommends && rm -r /var/lib/apt/lists/* \
     && echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
     && locale-gen \
-    && docker-php-ext-install -j$(nproc) intl gettext zip \
+    && docker-php-ext-install -j$(nproc) intl gettext zip pdo_mysql \
     && pecl install apcu memcached \
     && docker-php-ext-enable apcu memcached \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=${COMPOSER_PATH} --filename=composer --version=${COMPOSER_VERSION} \
